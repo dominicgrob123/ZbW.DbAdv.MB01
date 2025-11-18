@@ -3,6 +3,7 @@ using EFCoreDemo;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -10,9 +11,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace EFCoreDemo.Migrations
 {
     [DbContext(typeof(CourseContext))]
-    partial class CourseContextModelSnapshot : ModelSnapshot
+    [Migration("20251116131910_InitialCreate")]
+    partial class InitialCreate
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -21,11 +24,7 @@ namespace EFCoreDemo.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
-<<<<<<< HEAD
-            modelBuilder.Entity("EFCoreDemo.Model.Author", b =>
-=======
             modelBuilder.Entity("EFCoreDemo.Models.Author", b =>
->>>>>>> 48d4a0bc71979ed5adcc16958e4fc6f19d9d896c
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -55,11 +54,6 @@ namespace EFCoreDemo.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Authors");
-<<<<<<< HEAD
-                });
-
-            modelBuilder.Entity("EFCoreDemo.Model.Category", b =>
-=======
 
                     b.HasData(
                         new
@@ -90,7 +84,6 @@ namespace EFCoreDemo.Migrations
                 });
 
             modelBuilder.Entity("EFCoreDemo.Models.Category", b =>
->>>>>>> 48d4a0bc71979ed5adcc16958e4fc6f19d9d896c
                 {
                     b.Property<int>("Id")
                         .HasColumnType("int");
@@ -102,11 +95,6 @@ namespace EFCoreDemo.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Categories");
-<<<<<<< HEAD
-                });
-
-            modelBuilder.Entity("EFCoreDemo.Model.Course", b =>
-=======
 
                     b.HasData(
                         new
@@ -127,7 +115,6 @@ namespace EFCoreDemo.Migrations
                 });
 
             modelBuilder.Entity("EFCoreDemo.Models.Course", b =>
->>>>>>> 48d4a0bc71979ed5adcc16958e4fc6f19d9d896c
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -162,11 +149,6 @@ namespace EFCoreDemo.Migrations
                     b.HasIndex("CategoryId");
 
                     b.ToTable("Courses");
-<<<<<<< HEAD
-                });
-
-            modelBuilder.Entity("EFCoreDemo.Model.CourseTag", b =>
-=======
 
                     b.HasData(
                         new
@@ -262,7 +244,6 @@ namespace EFCoreDemo.Migrations
                 });
 
             modelBuilder.Entity("EFCoreDemo.Models.CourseTag", b =>
->>>>>>> 48d4a0bc71979ed5adcc16958e4fc6f19d9d896c
                 {
                     b.Property<int>("CourseId")
                         .HasColumnType("int");
@@ -275,11 +256,6 @@ namespace EFCoreDemo.Migrations
                     b.HasIndex("TagId");
 
                     b.ToTable("CourseTags");
-<<<<<<< HEAD
-                });
-
-            modelBuilder.Entity("EFCoreDemo.Model.Tag", b =>
-=======
 
                     b.HasData(
                         new
@@ -335,7 +311,6 @@ namespace EFCoreDemo.Migrations
                 });
 
             modelBuilder.Entity("EFCoreDemo.Models.Tag", b =>
->>>>>>> 48d4a0bc71979ed5adcc16958e4fc6f19d9d896c
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -350,13 +325,6 @@ namespace EFCoreDemo.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Tags");
-<<<<<<< HEAD
-                });
-
-            modelBuilder.Entity("EFCoreDemo.Model.Course", b =>
-                {
-                    b.HasOne("EFCoreDemo.Model.Author", "Author")
-=======
 
                     b.HasData(
                         new
@@ -394,17 +362,12 @@ namespace EFCoreDemo.Migrations
             modelBuilder.Entity("EFCoreDemo.Models.Course", b =>
                 {
                     b.HasOne("EFCoreDemo.Models.Author", "Author")
->>>>>>> 48d4a0bc71979ed5adcc16958e4fc6f19d9d896c
                         .WithMany("Courses")
                         .HasForeignKey("AuthorId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-<<<<<<< HEAD
-                    b.HasOne("EFCoreDemo.Model.Category", "Category")
-=======
                     b.HasOne("EFCoreDemo.Models.Category", "Category")
->>>>>>> 48d4a0bc71979ed5adcc16958e4fc6f19d9d896c
                         .WithMany()
                         .HasForeignKey("CategoryId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -415,25 +378,15 @@ namespace EFCoreDemo.Migrations
                     b.Navigation("Category");
                 });
 
-<<<<<<< HEAD
-            modelBuilder.Entity("EFCoreDemo.Model.CourseTag", b =>
-                {
-                    b.HasOne("EFCoreDemo.Model.Course", "Course")
-=======
             modelBuilder.Entity("EFCoreDemo.Models.CourseTag", b =>
                 {
                     b.HasOne("EFCoreDemo.Models.Course", "Course")
->>>>>>> 48d4a0bc71979ed5adcc16958e4fc6f19d9d896c
                         .WithMany("CourseTags")
                         .HasForeignKey("CourseId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-<<<<<<< HEAD
-                    b.HasOne("EFCoreDemo.Model.Tag", "Tag")
-=======
                     b.HasOne("EFCoreDemo.Models.Tag", "Tag")
->>>>>>> 48d4a0bc71979ed5adcc16958e4fc6f19d9d896c
                         .WithMany("CourseTags")
                         .HasForeignKey("TagId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -444,29 +397,17 @@ namespace EFCoreDemo.Migrations
                     b.Navigation("Tag");
                 });
 
-<<<<<<< HEAD
-            modelBuilder.Entity("EFCoreDemo.Model.Author", b =>
-=======
             modelBuilder.Entity("EFCoreDemo.Models.Author", b =>
->>>>>>> 48d4a0bc71979ed5adcc16958e4fc6f19d9d896c
                 {
                     b.Navigation("Courses");
                 });
 
-<<<<<<< HEAD
-            modelBuilder.Entity("EFCoreDemo.Model.Course", b =>
-=======
             modelBuilder.Entity("EFCoreDemo.Models.Course", b =>
->>>>>>> 48d4a0bc71979ed5adcc16958e4fc6f19d9d896c
                 {
                     b.Navigation("CourseTags");
                 });
 
-<<<<<<< HEAD
-            modelBuilder.Entity("EFCoreDemo.Model.Tag", b =>
-=======
             modelBuilder.Entity("EFCoreDemo.Models.Tag", b =>
->>>>>>> 48d4a0bc71979ed5adcc16958e4fc6f19d9d896c
                 {
                     b.Navigation("CourseTags");
                 });

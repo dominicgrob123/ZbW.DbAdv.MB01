@@ -14,7 +14,12 @@
 
     public DateTime ReleaseDate { get; set; }
 
-    public ICollection<VideoGenre>? VideoGenres { get; set; }
+        //public ICollection<VideoGenre>? VideoGenres { get; set; }
 
-  }
+   // New foreign key property
+   public byte GenreId { get; set; }
+
+   // Navigation property for genre
+   public Genre? Genre { get; set; }
+    }
 }

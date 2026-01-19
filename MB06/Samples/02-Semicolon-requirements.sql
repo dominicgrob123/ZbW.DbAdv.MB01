@@ -36,7 +36,7 @@ GO
 -----------------------------------------------------------------
 
 -- What about this?
-SELECT	@@SERVERNAME;
+SELECT	@@SERVERNAME
 
 -- Basic example
 WITH CTE_Requests (session_id, status, login_name, text)

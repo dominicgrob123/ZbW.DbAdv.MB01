@@ -22,8 +22,9 @@ VALUES
 (7, 4);
 GO
 SELECT * FROM dbo.ProductHierarchy;
+
 -- Now let's use a recursive CTE in order to traverse the hierarchy
-WITH CTE_Products --(ProductID, ParentProductID, ProductLevel)
+WITH CTE_Products(ProductID, ParentProductID, ProductLevel, HierarchyPath)
 AS
 (
 	SELECT	ProductID				= ph.ProductID,
@@ -36,10 +37,10 @@ AS
 	SELECT	ProductID				= pn.ProductID,
 			ParentProductID			= pn.ParentProductID,
 			ProductLevel			= p1.ProductLevel + 1,
-			HierarchyPath			= CAST(CONCAT(p1.HierarchyPath, '>' ,pn.ProductID) AS nvarchar(4000))
-	FROM	dbo.ProductHierarchy	AS pn
+			HierarchyPath			= CAST(CONCAT(p1.HierarchyPath, ' > ', pn.ProductID) AS NVARCHAR(4000))
+	FROM	dbo.ProductHierarchy	AS pn -- child
 			INNER JOIN
-			CTE_Products			AS p1
+			CTE_Products			AS p1 -- parent
 				ON	p1.ProductID	= pn.ParentProductID
 )
 SELECT		ProductID			= cte.ProductID,

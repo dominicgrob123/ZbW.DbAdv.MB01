@@ -39,3 +39,34 @@ INSERT INTO ap_sales VALUES   ('2014', 'Q1', '01', 1600);
 INSERT INTO ap_sales VALUES   ('2014', 'Q1', '02', 1400);
 INSERT INTO ap_sales VALUES   ('2014', 'Q1', '03', 1815);
 INSERT INTO ap_sales VALUES   ('2014', 'Q2', '04', 1100);
+
+Select	s.S_YEAR, 
+		s.S_MONTH, 
+		s.SALES,
+		Rolling_Sum = SUM(s.Sales) over (order by s.Sales)
+From dbo.ap_sales As s;
+
+With RollingSum
+As(
+	Select	s.S_Year,
+			s.S_Month,
+			s.Sales,
+			RNumber = Row_Number() over (partition by s.S_Year order by s.S_Year, s.S_Month)
+	From dbo.ap_sales as s
+)
+select 
+		s.S_Year,
+		s.S_Month,
+		s.Sales,
+		SUm(s.Sales) over (order by s.RNumber),
+		s.RNumber
+from RollingSum as s
+
+
+Select 
+		s.S_YEAR,
+		s.S_MONTH,
+		s.Sales,
+		Privious_Month_Sales = Lag(s.SALES) over (order by s.S_Year, s.S_Month)
+
+From dbo.ap_sales as s

@@ -35,7 +35,8 @@ AS
 	FROM	dbo.Islands	AS i
 )
 SELECT		BeginningOfIsland	= MIN(d.ID),
-			EndOfIsland			= MAX(d.ID)
+			EndOfIsland			= MAX(d.ID),
+			d.Diff
 FROM		Diffs				AS d
 GROUP BY	d.Diff;
 
@@ -154,6 +155,13 @@ SELECT	ID				= d.ID,
 		Val2			= d.Val2
 FROM	dbo.Duplicates	AS d;
 
+SELECT	ID				= d.ID,
+		Val1			= d.Val1,
+		Val2			= d.Val2,
+		RowNum			= ROW_Number() over (partition by d.ID, d.Val1, d.Val2 order by d.ID)
+FROM	dbo.Duplicates	AS d;
+		
+
 
 
 
@@ -178,7 +186,7 @@ SELECT	ID				= d.ID,
 FROM	dbo.Duplicates	AS d;
 
 
--- ergibt Fehler - Lösung?
+-- ergibt Fehler - Lösung? row_number kann nicht im where gebraucht werden
 SELECT	ID				= d.ID,
 		Val1			= d.Val1,
 		Val2			= d.Val2,

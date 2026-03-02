@@ -4,23 +4,38 @@ USE [Northwind]
 	1. INNER JOIN
 
 	Aufgabe:
-	Gib alle Bestellungen aus und zeige dazu den Firmennamen des Kunden sowie das Bestelldatum an.
+	Gib alle Bestellungen aus und zeige dazu den Firmennamen des Kunden sowie das Bestelldatum an. 
 */
-
+	SELECT CompanyName as Firmennamen, OrderDate as Bestelldatum
+	FROM dbo.Orders AS o
+		INNER JOIN 
+		dbo.Customers  AS c
+		ON c.CustomerID = o.CustomerID
+	ORDER BY c.CompanyName
 /*
 2. INNER JOIN + WHERE
 
 Aufgabe:
 Zeige alle Bestellungen aus dem Jahr 1997 an, inklusive Kundenname und vollständigem Namen des Mitarbeiters.
 */
+	SELECT CompanyName as Kundenname, Concat(LastName, ' ', FirstName) as Mitarbeiter
+	FROM dbo.Employees AS e
+		INNER JOIN 
+		dbo.Orders AS o
+		ON e.EmployeeID = o.EmployeeID
+		INNER JOIN 
+		dbo.Customers AS c
+		ON o.CustomerID = c.CustomerID
+	WHERE Format(OrderDate, 'yyyy') = '1997';
 
+		
 /*
 3. INNER JOIN (mehrere Tabellen)
 
 Aufgabe:
 Zeige für alle Bestellpositionen die Bestellnummer, den Produktnamen, die Menge und den Einzelpreis an.
 */
-
+	SELECT 
 /*
 4. LEFT JOIN (fehlende Datensätze erkennen)
 
@@ -136,7 +151,9 @@ Liste alle Kunden auf, die Produkte aus der Kategorie „Beverages“ bestellt haben
 Aufgabe:
 Zeige alle Mitarbeiter, die mehr Bestellungen bearbeitet haben als der durchschnittliche Mitarbeiter.
 */
-
+	SELECT *
+	From dbo.Employees e
+	Where dbo.Orders < AVG(d
 
 
 /*

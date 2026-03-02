@@ -17,7 +17,7 @@ FROM		Sales.SalesOrderDetail			AS sod
 WHERE		s.[Name]						LIKE '%Bikes%'
 AND			soh.OrderDate					>= '2014-01-01'
 AND			soh.OrderDate					< '2015-01-01'
-GROUP BY	s.[Name];
+GROUP BY	s.[Name];	
 
 
 --One traditional way to solve
